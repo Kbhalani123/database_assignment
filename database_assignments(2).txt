@@ -1,0 +1,314 @@
+1. What do you understand By Database?
+   Database defined
+       A database is an organized collection of structured information, or data, typically stored electronically in a computer system. A database is usually controlled by a database management system (DBMS).
+
+2. What is Normalization?
+     As an SQL Developer, you often work with enormous amounts of data stored in different tables that are present inside multiple databases. It often becomes strenuous to extract the data if it is not organized correctly. Using Normalization, you can solve the problem of data redundancy and organize the data using different forms. This tutorial will help you get to know the concept of Normalization in SQL.
+
+3. What is Difference between DBMS and RDBMS?
+                  RDBMS	                                                                                DBMS
+        Data stored is in table format	                                                Data stored is in the file format
+        Multiple data elements are accessible together                                    Individual access of data elements
+        Data in the form of a table are linked together	                              No connection between data
+        Normalisation is not achievable	                                                There is normalisation
+        Support distributed database	                                                No support for distributed database
+        Data is stored in a large amount                                                  Data stored is a small quantity
+        Here, redundancy of data is reduced with the help of key and indexes in RDBMS     Data redundancy is common
+        RDBMS supports multiple users	                                                DBMS supports a single user
+        It features multiple layers of security while handling data	                  There is only low security while handling data
+        The software and hardware requirements are higher	                              The software and hardware requirements are low
+        Oracle, SQL Server.	                                                            XML, Microsoft Access.
+
+4. What is MF Cod Rule of RDBMS Systems?
+    Codd’s rule in DBMS also known as Codd's 12 rules/commandments is a set of thirteen rules (numbered 0 to 12) that define a database to be a correct Relational Database Management System (RDBMS). If a database follows Codd's 12 rules, it is called a True relational database management system.These rules were originally set out in 1970 by Edgar F. Codd and were developed further by him in 1985.
+
+5. What do you understand By Data Redundancy?
+     Possible data inconsistency  :-
+   Data redundancy occurs when the same piece of data exists in multiple places, whereas data inconsistency is when the same data exists in different formats in multiple tables. Unfortunately, data redundancy can cause data inconsistency, which can provide a company with unreliable and/or meaningless information. 
+
+     Increase in data corruption :-
+   Data corruption is when data becomes damaged as a result of errors in writing, reading, storage, or processing. When the same data fields are repeated in a database or file storage system, data corruption arises. If a file gets corrupted, for example, and an employee tries to open it, they may get an error message and not be able to complete their task.
+
+6. What is DDL Interpreter?
+    DDL Interpreter DDL expands to Data Definition Language. DDL Interpreter as the name suggests interprets the DDL statements such as schema definition statements like create, delete, etc. The result of this interpretation is a set of a table that contains the meta-data which is stored in the data dictionary.
+
+7. What is DML Compiler in SQL?
+    DML Compiler: It processes the DML statements into low level instruction (machine language), so that they can be executed. DDL Interpreter: It processes the DDL statements into a set of table containing meta data (data about data).
+         INSERT: command to add new or new value to the database
+         UPDATE: command to change or update current/existing data to a more recent value within the database
+         DELETE: command to delete or delete the values or data information of the current table in the database
+
+8.  What is SQL Key Constraints writing an Example of SQL Key Constraints?
+     SQL constraints are used to specify rules for the data in a table.
+   Constraints are used to limit the type of data that can go into a table. This ensures the accuracy and reliability of the data in the table. If there is any violation between the constraint and the data action, the action is aborted.
+   Constraints can be column level or table level. Column level constraints apply to a column, and table level constraints apply to the whole table.
+
+9. What is save Point? How to create a save Point write a Query?
+    A SAVEPOINT is a point in a transaction in which you can roll the transaction back to a certain point without rolling back the entire transaction. Syntax for Savepoint command: SAVEPOINT SAVEPOINT_NAME; This command is used only in the creation of SAVEPOINT among all the transactions.
+
+10. What is trigger and how to create a Trigger in SQL?
+       A trigger is a special type of stored procedure that automatically runs when an event occurs in the database server. DML triggers run when a user tries to modify data through a data manipulation language (DML) event. DML events are INSERT, UPDATE, or DELETE statements on a table or view.
+     DDL triggers run in response to a variety of data definition language (DDL) events. These events primarily correspond to Transact-SQL CREATE, ALTER, and DROP statements, and certain system stored procedures that perform DDL-like operations.
+
+11. create a table student.
+
+CREATE TABLE student (
+    roll_no INT PRIMARY KEY,
+    name VARCHAR(255),
+    branch VARCHAR(255)
+);
+
+CREATE TABLE exam (
+    s_code INT,
+    marks INT,
+    p_code INT,
+    FOREIGN KEY (s_code) REFERENCES student(roll_no)
+);
+INSERT INTO student (roll_no, name, branch)
+VALUES
+    (1, 'jay', 'computer science'),
+    (2, 'keyur', 'IT'),
+    (3, 'kevin', 'computer science');
+SELECT * FROM student;
++---------+-------+-------------------+
+| roll_no | name  | branch            |
++---------+-------+-------------------+
+| 1       | jay   | computer science  |
+| 2       | keyur | IT                |
+| 3       | kevin | computer science  |
++---------+-------+-------------------+
+create table name: exam
+
+CREATE TABLE exam (
+    roll_num INT ,
+    s_code INT,
+    marks INT,
+    p_code INT,
+    FOREIGN KEY (s_code) REFERENCES student(roll_no)
+);
+INSERT INTO exam (s_code, marks, p_code)
+VALUES
+    (1, 'CS11', 50, 'CS'),
+    (2, 'CS12', 65, 'CS'),
+    (3, 'EC101', 70, 'EC');
+
+SELECT * FROM exam;
+
++---------+--------+-------+--------+
+| roll_no | s_code | marks | p_code |
++---------+--------+-------+--------+
+| 4       | CS13   | 72    | CS     |
+| 1       | CS11   | 59    | CS     |
+| 2       | CS12   | 65    | CS     |
+| 3       | EC101  |  67   | EC     |
++---------+--------+-------+--------+
+
+->Create table given below: Employee and IncentiveTable
+CREATE TABLE employee (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    salary DECIMAL(10, 2),
+    joining_date DATE,
+    department VARCHAR(255)
+);
+
+INSERT INTO employee (first_name, last_name, salary, joining_date, department)
+VALUES
+    ('keyur', 'patel', 55000.00, '2023-01-15', 'IT'),
+    ('Jay', 'dhola', 60000.00, '2022-11-10', 'IT'),
+    ('Dhruv', 'gabani', 52000.00, '2023-03-05', 'Finance');
+
+
+SELECT * FROM employee;
+
+
+| employee_id | first_name | last_name | salary   | joining_date | department |
++-------------+------------+-----------+----------+--------------+------------+
+| 1           | keyur      | patel     | 55000.00 | 2023-01-15   | IT         |
+| 2           | Jay        | dhola     | 60000.00 | 2022-11-10   | IT         |
+| 3           | Dhruv      | gabani    | 52000.00 | 2023-03-05   | Finance    |
++-------------+------------+-----------+----------+--------------+------------+
+
+CREATE TABLE incentive (
+    incentive_id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_ref_id INT,
+    incentive_date DATE,
+    incentive_amount DECIMAL(10, 2),
+    FOREIGN KEY (employee_ref_id) REFERENCES employee(employee_id)
+);
+
+INSERT INTO incentive (employee_ref_id, incentive_date, incentive_amount)
+VALUES
+    (1, '2023-05-20', 1000.00),
+    (2, '2023-05-22', 800.00),
+    (3, '2023-05-25', 1200.00);
+
+SELECT * FROM incentive;
+
++--------------+-----------------+------------------+-------------------+
+| incentive_id | employee_ref_id | incentive_date   | incentive_amount  |
++--------------+-----------------+------------------+-------------------+
+| 1            | 1               | 2023-05-20       | 1000.00           |
+| 2            | 2               | 2023-05-22       | 800.00            |
+| 3            | 3               | 2023-05-25       | 1200.00           |
++--------------+-----------------+------------------+-------------------+
+A) Get First_Name from employee table using jay name “Employee Name”.
+
+SELECT First_Name AS "Employee Name" FROM employee WHERE First_Name = 'Jay';
+
++---------------+
+| Employee Name |
++---------------+
+| Jay           |
++---------------+
+
+B) Get FIRST_NAME, Joining Date, and Salary from employee table.
+SELECT FIRST_NAME, Joining_Date, Salary FROM employee;
++------------+--------------+----------+
+| FIRST_NAME | Joining_Date | Salary   |
++------------+--------------+----------+
+| keyur      | 2023-01-15   | 55000.00 |
+| Jay        | 2022-11-10   | 60000.00 |
+| Dhruv      | 2023-03-05   | 52000.00 |
++------------+--------------+----------+
+
+C)Get all employee details from the employee table order by First_Name
+  Ascending and Salary descending? 
+ SELECT * FROM employee
+    -> ORDER BY FIRST_NAME ASC, Salary DESC;
++-------------+------------+-----------+----------+--------------+------------+
+| employee_id | first_name | last_name | salary   | joining_date | department |
++-------------+------------+-----------+----------+--------------+------------+
+|           3 | Dhruv      | gabani    | 52000.00 | 2023-03-05   | Finance    |
+|           2 | Jay        | dhola     | 60000.00 | 2022-11-10   | IT         |
+|           1 | keyur      | patel     | 55000.00 | 2023-01-15   | IT         |
++-------------+------------+-----------+----------+--------------+------------+
+ 
+D) Get employee details from employee table whose first name contains ‘J’.
+     SELECT * FROM employee
+    -> WHERE FIRST_NAME LIKE '%J%';
++-------------+------------+-----------+----------+--------------+------------+
+| employee_id | first_name | last_name | salary   | joining_date | department |
++-------------+------------+-----------+----------+--------------+------------+
+|           2 | Jay        | dhola     | 60000.00 | 2022-11-10   | IT         |
++-------------+------------+-----------+----------+--------------+------------+
+
+E) Get department wise maximum salary from employee table order by
+   salaryascending?
+
+ SELECT department, MAX(salary) AS max_salary
+    -> FROM employee
+    -> GROUP BY department
+    -> ORDER BY max_salary ASC;
++------------+------------+
+| department | max_salary |
++------------+------------+
+| Finance    |   52000.00 |
+| IT         |   60000.00 |
++------------+------------+
+
+=>Create table given below: Salesperson and Customer
+->create table for salesperson:
+CREATE TABLE salesperson (
+    SNo INT AUTO_INCREMENT PRIMARY KEY,
+    SNAME VARCHAR(255),
+    CITY VARCHAR(255),
+    COMM DECIMAL(10, 2)
+);
+
+INSERT INTO salesperson (SNo, SNAME, CITY, COMM)
+VALUES
+    (1001, 'lalit', 'surat', 0.12),
+    (1002, 'jeet', 'navsari', 0.13),
+    (1003, 'nayan', 'bhavnagar', 0.15);
+
+SELECT * FROM salesperson;
++------+-------+-----------+------+
+| SNo  | SNAME | CITY      | COMM |
++------+-------+-----------+------+
+| 1001 | lalit | surat     | 0.12 |
+| 1002 | jeet  | navsari   | 0.13 |
+| 1003 | nayan | bhavnagar | 0.15 |
++------+-------+-----------+------+
+
+->create table for customer
+CREATE TABLE customer (
+    CNM INT AUTO_INCREMENT PRIMARY KEY,
+    CNAME VARCHAR(255),
+    CITY VARCHAR(255),
+    RATING INT,
+    SNo INT,
+    FOREIGN KEY (SNo) REFERENCES salesperson(SNo)
+);
+INSERT INTO customer (CNM, CNAME, CITY, RATING, SNo)
+VALUES
+    (201, 'Nitin', 'surat', 100, 1001),
+    (202, 'Mahesh', 'valsad', 200, 1002),
+    (203, 'Keyur', 'bharuch', 300, 1003);
+
++-----+--------+---------+--------+------+
+| CNM | CNAME  | CITY    | RATING | SNo  |
++-----+--------+---------+--------+------+
+| 201 | Nitin  | surat   |    100 | 1001 |
+| 202 | Mahesh | valsad  |    200 | 1002 |
+| 203 | Keyur  | bharuch |    300 | 1003 |
++-----+--------+---------+--------+------+
+
+Retrieve the below data from above table
+1) All orders for more than $1000.
+ SELECT *
+FROM orders
+WHERE order_value > 1000;
+
+2) Names and cities of all salespeople in surat with commission above 0.12
+  SELECT SNAME, CITY
+FROM salesperson
+WHERE CITY = 'surat' AND COMM > 0.12;
++-------+-----------+
+| SNAME | CITY      | 
++-------+-----------+
+| lalit | surat     |
++-------+-----------+
+
+3) All salespeople either in navsari or in surat
+  SELECT SNAME, CITY
+FROM salesperson
+WHERE CITY IN ('Navsari', 'Surat');
+
++-----------+-------+
+| SNAME | CITY      | 
++-------+-----------+
+| lalit | surat     |
+| jeet  | navsari   |
++-------+-----------+
+
+4) All salespeople with commission between 0.10 and 0.12. (Boundary 
+valuesshould be excluded)
+SELECT SNAME, CITY, COMM
+FROM salesperson
+WHERE COMM > 0.10 AND COMM < 0.12;
++------+-------+-----------+------+
+| SNo  | SNAME | CITY      | COMM |
++------+-------+-----------+------+
+| 1001 | lalit | surat     | 0.12 |
++------+-------+-----------+------+
+5) All customers excluding those with rating <= 100 unless they are located
+inRome
+SELECT CNM, CNAME, CITY, RATING
+FROM customer
+WHERE RATING > 100 OR (CITY = 'Rome' AND RATING <= 100);
+
++-----+--------+---------+--------+
+| CNM | CNAME  | CITY    | RATING |
++-----+--------+---------+--------+
+| 202 | Mahesh | valsad  |    200 |
+| 203 | Keyur  | bharuch |    300 |
++-----+--------+---------+--------+
+  
+
+
+
+
+
+
